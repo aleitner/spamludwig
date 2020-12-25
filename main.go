@@ -26,18 +26,15 @@ func main() {
 		return
 	}
 
+	person := "@LudwigAhgren"
+	tweetID := int64(1342270499825414145)
+	tweetContent := fmt.Sprintf("%s You're so tall! https://www.amazon.com/hz/wishlist/ls/3CJCHZ9DGN05D?ref_=wl_share check it out my friend!%d", person, ticks)
+
 	ticks := 0
-	tick := time.Tick(5 * time.Second)
+	tick := time.Tick(1 * time.Second)
 	for {
-		tweetContent := fmt.Sprintf("https://www.amazon.com/hz/wishlist/ls/3CJCHZ9DGN05D?ref_=wl_share check it out my friend!%d", ticks)
-		tweetID := int64(1342270499825414145)
-
-		fmt.Println(tweetID)
-
 		select {
 		case <-tick:
-
-
 			// for now ignore tweet and status
 			_, _, err := client.Statuses.Update(tweetContent, &twitter.StatusUpdateParams{
 			InReplyToStatusID: tweetID,
